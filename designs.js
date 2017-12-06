@@ -1,32 +1,42 @@
-// Select color input
-// Select size input
+$(document).ready(function () {
+    var submitButton = $("#submit_button");
 
-// When size is submitted by the user, call makeGrid()
+    function makeGrid() {
+      var gridHeight = $("#input_height").val();
+      var gridWidth = $("#input_width").val();
 
-/* var submitButton = document.getElementById("#submit_button");
-var gridHeight = $("#input_height").val();
-var gridWidth = $("#input_width").val();
-
-function makeGrid() {
-  for (row = 0; row <= gridHeight; row++) {
-    $("#pixel_canvas").append("<tr>\"XX\"</tr>");
-      for (col = 0; col <= gridWidth; col++) {
-        $("#pixel_canvas").first().append("<tr>\"XX\"</tr>");
+      for (row = 0; row < gridHeight; row++) {
+        $("#pixel_canvas").append("<tr></tr>");
+          for (col = 0; col < gridWidth; col++) {
+            $("#pixel_canvas").first().append("<td></td>");
+          }
       }
-  }
-}
+    };
 
-function cnsl() {
-  console.log("THIS WORKS")
-}
+    /* DEFAULT CANVAS */
+    for (row = 0; row <= 30; row++) {
+      $("#pixel_canvas").append("<tr></tr>");
+        for (col = 0; col <= 30; col++) {
+          $("#pixel_canvas").first().append("<td></td>");
+        }
+    };
 
-$("#submit_button").on("click", function() {
-  $("submit_button").preventDefault();
-  makeGrid();
-}) */
-var submitButton = $("#submit_button")
-var gridHeight = $("#input_height").val();
-var gridWidth = $("#input_width").val();
-submitButton.on("click", function() {
-  alert(gridHeight + "  -  " + gridWidth)
+    submitButton.on("click", function(e) {
+      e.preventDefault();
+
+      if ($("#input_height").val() <= 50 && $("#input_width").val() <= 50) {
+        $("table").find("*").remove();
+        makeGrid();
+        // $("#sizePicker").remove();
+        // $("#gridHeader").remove();
+      } else {
+        alert("The grid size should not exceed 50 cell in either directions!")
+      }
+    });
+
+
+    $("table").delegate("td", "mouseover", function () {
+        var color = $("#colorPicker").val();
+        $(this).css("background-color", color)
+      });
 })
