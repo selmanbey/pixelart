@@ -50,7 +50,11 @@ $(document).ready(function () {
         mousepressed = true;
         var color = $("#colorPicker").val();
         if(mousepressed) {
-          $(this).css("background-color", color);
+          if ($(this).css("background-color") != 'rgb(255, 255, 255)') {
+            $(this).css("background-color", "white");
+          } else {
+            $(this).css("background-color", color);
+          }
         }
       });
 
@@ -61,12 +65,16 @@ $(document).ready(function () {
     $("table").delegate("td", "mouseover", function () {
         var color = $("#colorPicker").val();
         if(mousepressed) {
-          $(this).css("background-color", color);
+          if ($(this).css("background-color") != 'rgb(255, 255, 255)') {
+            $(this).css("background-color", "white");
+          } else {
+            $(this).css("background-color", color);
+          }
         }
-
-    $("table").on("dblclick", "td", function(){
-      $(this).css("background-color", "");
-    })
+    //
+    // $("table").on("dblclick", "td", function(){
+    //   $(this).css("background-color", "");
+    // })
       });
 
 })
