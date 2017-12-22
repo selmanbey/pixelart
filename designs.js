@@ -71,10 +71,7 @@ $(document).ready(function () {
             $(this).css("background-color", color);
           }
         }
-    //
-    // $("table").on("dblclick", "td", function(){
-    //   $(this).css("background-color", "");
-    // })
+
       });
 
 })
